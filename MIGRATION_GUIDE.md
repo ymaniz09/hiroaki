@@ -16,15 +16,32 @@ dependencies {
 
 **After (via JitPack):**
 ```gradle
-repositories {
-    maven { url 'https://jitpack.io' }
+// In your root build.gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
 }
 
+// In your app/build.gradle
 dependencies {
     testImplementation 'com.github.ymaniz09.hiroaki:hiroaki-core:1.0.0'
     androidTestImplementation 'com.github.ymaniz09.hiroaki:hiroaki-android:1.0.0'
 }
+
+// Or use the short form (both modules)
+dependencies {
+    testImplementation 'com.github.ymaniz09:hiroaki:1.0.0'
+}
 ```
+
+### Latest Version
+
+Check the latest version at: https://jitpack.io/#ymaniz09/hiroaki
+
+[![JitPack](https://jitpack.io/v/ymaniz09/hiroaki.svg)](https://jitpack.io/#ymaniz09/hiroaki)
 
 ### 2. Update Imports
 
