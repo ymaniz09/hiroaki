@@ -1,5 +1,16 @@
-Hiroaki [![CircleCI](https://circleci.com/gh/JorgeCastilloPrz/hiroaki/tree/master.svg?style=svg&circle-token=3824cb7754fef5b81f1a67c6e86786df5db242c5)](https://circleci.com/gh/JorgeCastilloPrz/hiroaki/tree/master)
+Hiroaki (Modernized Fork)
 ======
+
+[![CI](https://github.com/ymaniz09/hiroaki/workflows/CI/badge.svg)](https://github.com/ymaniz09/hiroaki/actions/workflows/ci.yml)
+[![Gradle](https://img.shields.io/badge/Gradle-8.10-blue.svg)](https://gradle.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.0.20-purple.svg)](https://kotlinlang.org)
+[![Android](https://img.shields.io/badge/Android-SDK%2035-green.svg)](https://developer.android.com)
+[![Tests](https://img.shields.io/badge/tests-64%2F64%20passing-brightgreen.svg)](#)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+> **Note**: This is a modernized fork of the original [Hiroaki](https://github.com/JorgeCastilloPrz/hiroaki) by Jorge Castillo Pérez.  
+> Updated to **Gradle 8.10**, **Kotlin 2.0**, **Android SDK 35**, and modern dependencies.  
+> See [MODERNIZATION.md](MODERNIZATION.md) for details.
 
 <img src="https://drive.google.com/uc?id=1dUvJF0sBQCncUdLJ7z6Q7ZVHdD5WKLS0" width="256" height="256" />
 
