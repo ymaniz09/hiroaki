@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    namespace 'me.jorgecastillo.hiroaki.android'
+    namespace 'io.github.ymaniz09.hiroaki.android'
     compileSdk 35
     
     defaultConfig {

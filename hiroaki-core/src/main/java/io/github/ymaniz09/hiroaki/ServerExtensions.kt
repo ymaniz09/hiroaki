@@ -1,0 +1,105 @@
+package io.github.ymaniz09.hiroaki
+
+import io.github.ymaniz09.hiroaki.dispatcher.DispatcherRetainer
+import io.github.ymaniz09.hiroaki.matchers.matches
+import io.github.ymaniz09.hiroaki.models.Body
+import io.github.ymaniz09.hiroaki.models.PotentialRequestChain
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.mockwebserver.MockWebServer
+import okhttp3.mockwebserver.RecordedRequest
+import org.hamcrest.Matcher
+import retrofit2.Converter
+import retrofit2.Retrofit
+
+enum class Method {
+    DELETE, GET, HEAD, POST, OPTIONS, PATCH, PUT, CONNECT, TRACE
+}
+
+private fun okHttpClient(
+    loggingLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BODY
+): OkHttpClient =
+        OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(loggingLevel))
+                .build()
+
+inline fun <reified T> MockWebServer.retrofitService(
+    converterFactory: Converter.Factory? = null,
+    okHttpClient: OkHttpClient? = null
+): T = if (okHttpClient == null) {
+    retrofitService(T::class.java, converterFactory)
+} else {
+    retrofitService(T::class.java, converterFactory, okHttpClient)
+}
+
+fun <T> MockWebServer.retrofitService(
+    serviceClass: Class<T>,
+    converterFactory: Converter.Factory? = null,
+    okHttpClient: OkHttpClient = okHttpClient()
+): T {
+    return Retrofit.Builder().baseUrl(this.url("/"))
+            .client(okHttpClient)
+            .addOptionalConverterFactory(converterFactory)
+            .build()
+            .create(serviceClass)
+}
+
+private fun Retrofit.Builder.addOptionalConverterFactory(converterFactory: Converter.Factory?) = apply {
+    converterFactory?.let { addConverterFactory(it) }
+}
+
+fun MockWebServer.whenever(
+    sentToPath: String,
+    queryParams: QueryParams? = null,
+    jsonBody: Body? = null,
+    headers: Headers? = null,
+    method: Method? = null
+): PotentialRequestChain {
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
+    return PotentialRequestChain(
+            matches(
+                    sentToPath = sentToPath,
+                    method = method,
+                    queryParams = queryParams,
+                    jsonBody = jsonBody,
+                    headers = headers
+            )
+    )
+}
+
+fun MockWebServer.whenever(method: Method, sentToPath: String): PotentialRequestChain {
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
+    return PotentialRequestChain(
+            matches(
+                    method = method,
+                    sentToPath = sentToPath
+            )
+    )
+}
+
+fun MockWebServer.whenever(method: Method, sentToPath: String, params: QueryParams): PotentialRequestChain {
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
+    return PotentialRequestChain(
+            matches(
+                    method = method,
+                    sentToPath = sentToPath,
+                    queryParams = params
+            )
+    )
+}
+
+fun MockWebServer.whenever(method: Method, sentToPath: String, jsonBody: Body): PotentialRequestChain {
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
+    return PotentialRequestChain(
+            matches(
+                    method = method,
+                    sentToPath = sentToPath,
+                    jsonBody = jsonBody
+            )
+    )
+}
+
+fun MockWebServer.whenever(matcher: Matcher<RecordedRequest>): PotentialRequestChain {
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
+    return PotentialRequestChain(matcher)
+}
