@@ -15,12 +15,9 @@ import me.jorgecastillo.hiroaki.models.success
 import me.jorgecastillo.hiroaki.mother.anyArticle
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
-@RunWith(MockitoJUnitRunner::class)
 class GsonNewsNetworkDataSourceTest : MockServerSuite() {
 
     private lateinit var dataSource: GsonNewsNetworkDataSource

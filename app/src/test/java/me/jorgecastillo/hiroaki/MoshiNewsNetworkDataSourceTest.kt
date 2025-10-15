@@ -1,5 +1,7 @@
 package me.jorgecastillo.hiroaki
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.runBlocking
 import me.jorgecastillo.hiroaki.Method.GET
 import me.jorgecastillo.hiroaki.Method.POST
@@ -16,12 +18,9 @@ import me.jorgecastillo.hiroaki.models.success
 import me.jorgecastillo.hiroaki.mother.anyArticle
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.IOException
 
-@RunWith(MockitoJUnitRunner::class)
 class MoshiNewsNetworkDataSourceTest : MockServerSuite() {
 
     private lateinit var dataSource: MoshiNewsNetworkDataSource
@@ -29,8 +28,11 @@ class MoshiNewsNetworkDataSourceTest : MockServerSuite() {
     @Before
     override fun setup() {
         super.setup()
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
         dataSource = MoshiNewsNetworkDataSource(
-            server.retrofitService(MoshiConverterFactory.create())
+            server.retrofitService(MoshiConverterFactory.create(moshi))
         )
     }
 
