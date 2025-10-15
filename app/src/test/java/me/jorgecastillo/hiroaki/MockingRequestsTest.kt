@@ -97,7 +97,7 @@ class MockingRequestsTest : MockServerSuite() {
                             "  \"articles\": [\n" +
                             "    {\n" +
                             "      \"source\": {\n" +
-                            "        \"id\": ${request.path.length},\n" +
+                            "        \"id\": ${request.path?.length ?: 0},\n" +
                             "        \"name\": \"Lifehacker.com\"\n" +
                             "      },\n" +
                             "      \"author\": \"Jacob Kleinman\",\n" +

@@ -100,7 +100,7 @@ class JsonDSLTest : MockServerSuite() {
                         "totalResults" / 2342
                         "articles" / jsonArray(json {
                             "source" / json {
-                                "id" / request.path.length
+                                "id" / (request.path?.length ?: 0)
                                 "name" / "Lifehacker.com"
                             }
                             "author" / "Jacob Kleinman"

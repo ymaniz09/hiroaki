@@ -30,6 +30,6 @@ open class AndroidMockServerSuite @JvmOverloads constructor(
     open fun tearDown() {
         server.shutdown()
         AndroidDispatcherRetainer.resetDispatchers()
-        server.setDispatcher(AndroidDispatcherRetainer.queueDispatcher)
+        server.dispatcher = AndroidDispatcherRetainer.queueDispatcher
     }
 }
