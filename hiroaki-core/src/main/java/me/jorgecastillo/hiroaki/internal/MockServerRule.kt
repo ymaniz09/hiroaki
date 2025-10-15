@@ -24,6 +24,6 @@ class MockServerRule @JvmOverloads constructor(
     override fun after() {
         server.shutdown()
         DispatcherRetainer.resetDispatchers()
-        server.setDispatcher(DispatcherRetainer.queueDispatcher)
+        server.dispatcher = DispatcherRetainer.queueDispatcher
     }
 }

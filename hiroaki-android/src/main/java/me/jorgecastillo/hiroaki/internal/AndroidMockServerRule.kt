@@ -30,6 +30,6 @@ class AndroidMockServerRule @JvmOverloads constructor(
     override fun after() {
         server.shutdown()
         AndroidDispatcherRetainer.resetDispatchers()
-        server.setDispatcher(AndroidDispatcherRetainer.queueDispatcher)
+        server.dispatcher = AndroidDispatcherRetainer.queueDispatcher
     }
 }

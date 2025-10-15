@@ -23,6 +23,6 @@ fun isSentToPath(expectedPath: String): Matcher<RecordedRequest> {
         }
 
         override fun matchesSafely(request: RecordedRequest): Boolean =
-                request.path.startsWith(expectedPath)
+                request.path?.startsWith(expectedPath) ?: false
     }
 }

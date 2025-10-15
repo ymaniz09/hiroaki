@@ -16,12 +16,9 @@ import me.jorgecastillo.hiroaki.mother.anyArticle
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.io.IOException
 
-@RunWith(MockitoJUnitRunner::class)
 class RuleNetworkDataSourceTest {
 
     private lateinit var dataSource: JacksonNewsNetworkDataSource

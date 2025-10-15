@@ -55,7 +55,7 @@ fun MockWebServer.whenever(
     headers: Headers? = null,
     method: Method? = null
 ): PotentialRequestChain {
-    this.setDispatcher(DispatcherRetainer.hiroakiDispatcher)
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
     return PotentialRequestChain(
             matches(
                     sentToPath = sentToPath,
@@ -68,7 +68,7 @@ fun MockWebServer.whenever(
 }
 
 fun MockWebServer.whenever(method: Method, sentToPath: String): PotentialRequestChain {
-    this.setDispatcher(DispatcherRetainer.hiroakiDispatcher)
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
     return PotentialRequestChain(
             matches(
                     method = method,
@@ -78,7 +78,7 @@ fun MockWebServer.whenever(method: Method, sentToPath: String): PotentialRequest
 }
 
 fun MockWebServer.whenever(method: Method, sentToPath: String, params: QueryParams): PotentialRequestChain {
-    this.setDispatcher(DispatcherRetainer.hiroakiDispatcher)
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
     return PotentialRequestChain(
             matches(
                     method = method,
@@ -89,7 +89,7 @@ fun MockWebServer.whenever(method: Method, sentToPath: String, params: QueryPara
 }
 
 fun MockWebServer.whenever(method: Method, sentToPath: String, jsonBody: Body): PotentialRequestChain {
-    this.setDispatcher(DispatcherRetainer.hiroakiDispatcher)
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
     return PotentialRequestChain(
             matches(
                     method = method,
@@ -100,6 +100,6 @@ fun MockWebServer.whenever(method: Method, sentToPath: String, jsonBody: Body): 
 }
 
 fun MockWebServer.whenever(matcher: Matcher<RecordedRequest>): PotentialRequestChain {
-    this.setDispatcher(DispatcherRetainer.hiroakiDispatcher)
+    this.dispatcher = DispatcherRetainer.hiroakiDispatcher
     return PotentialRequestChain(matcher)
 }

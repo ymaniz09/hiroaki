@@ -20,7 +20,7 @@ fun hasQueryParams(expectedParams: List<Pair<String, String>>): Matcher<Recorded
 
         override fun describeMismatchSafely(request: RecordedRequest, mismatchDescription: Description) {
             for ((key, value) in expectedParams) {
-                val requestedParamsForExpectedKey = request.requestUrl.queryParameterValues(key)
+                val requestedParamsForExpectedKey = request.requestUrl?.queryParameterValues(key)
                 if (requestedParamsForExpectedKey == null ||
                         requestedParamsForExpectedKey.isEmpty()) {
                     mismatchDescription.appendText("\nparameter $key is not present.")
@@ -35,7 +35,7 @@ fun hasQueryParams(expectedParams: List<Pair<String, String>>): Matcher<Recorded
         override fun matchesSafely(request: RecordedRequest): Boolean {
             var failed = false
             for ((key, value) in expectedParams) {
-                val requestedParamsForExpectedKey = request.requestUrl.queryParameterValues(key)
+                val requestedParamsForExpectedKey = request.requestUrl?.queryParameterValues(key)
                 if (requestedParamsForExpectedKey == null ||
                         requestedParamsForExpectedKey.isEmpty()) {
                     failed = true

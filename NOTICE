@@ -1,0 +1,44 @@
+Hiroaki - Modernized Fork
+Copyright 2025
+
+This project is a fork of Hiroaki
+Original Project: https://github.com/JorgeCastilloPrz/hiroaki
+Original Author: Jorge Castillo Pérez
+Original Copyright: Copyright 2018 Jorge Castillo Pérez
+
+MODIFICATIONS:
+--------------
+This fork includes the following modifications:
+- Updated to Gradle 8.10 (from 5.4.1)
+- Updated to Kotlin 2.0.20 (from 1.3.50)
+- Updated to Android SDK 35 (from 29)
+- Updated to Java 17 (from 8)
+- Updated to OkHttp 4.12.0 (from 3.12.0)
+- Updated to Retrofit 2.11.0 (from 2.6.2)
+- Updated all AndroidX and Kotlin dependencies to latest versions
+- Fixed Moshi Kotlin reflection adapter configuration
+- Removed deprecated kotlin-android-extensions plugin
+- Fixed OkHttp 4.x API changes (setDispatcher -> dispatcher)
+- Fixed nullability issues for modern Kotlin strict null-safety
+- Updated all unit tests to work with Mockito 5.x
+- Added GitHub Actions CI/CD configuration
+- Commented out deprecated Maven publishing (for future migration)
+- Disabled ktlint integration (for future reconfiguration)
+
+LICENSE:
+--------
+This fork is also licensed under the Apache License, Version 2.0.
+See LICENSE.txt for the full license text.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+

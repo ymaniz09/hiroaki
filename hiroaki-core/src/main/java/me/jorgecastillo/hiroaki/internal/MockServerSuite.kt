@@ -29,6 +29,6 @@ open class MockServerSuite @JvmOverloads constructor(
     open fun tearDown() {
         server.shutdown()
         DispatcherRetainer.resetDispatchers()
-        server.setDispatcher(DispatcherRetainer.queueDispatcher)
+        server.dispatcher = DispatcherRetainer.queueDispatcher
     }
 }

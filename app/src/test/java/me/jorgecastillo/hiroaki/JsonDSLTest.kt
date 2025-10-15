@@ -12,11 +12,8 @@ import me.jorgecastillo.hiroaki.services.dto.NonNestedDataNumericArray
 import org.junit.Assert.assertNotEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.converter.gson.GsonConverterFactory
 
-@RunWith(MockitoJUnitRunner::class)
 class JsonDSLTest : MockServerSuite() {
 
     lateinit var service: SomeService
@@ -100,7 +97,7 @@ class JsonDSLTest : MockServerSuite() {
                         "totalResults" / 2342
                         "articles" / jsonArray(json {
                             "source" / json {
-                                "id" / request.path.length
+                                "id" / (request.path?.length ?: 0)
                                 "name" / "Lifehacker.com"
                             }
                             "author" / "Jacob Kleinman"

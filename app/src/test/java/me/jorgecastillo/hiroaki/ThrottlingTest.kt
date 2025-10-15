@@ -10,12 +10,9 @@ import me.jorgecastillo.hiroaki.models.throttle
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
-@RunWith(MockitoJUnitRunner::class)
 class ThrottlingTest {
 
     private lateinit var dataSource: JacksonNewsNetworkDataSource

@@ -3,8 +3,9 @@ package me.jorgecastillo.hiroaki
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_article.view.*
 import me.jorgecastillo.hiroaki.NewsAdapter.ViewHolder
 import me.jorgecastillo.hiroaki.model.Article
 import java.text.SimpleDateFormat
@@ -27,14 +28,22 @@ class NewsAdapter(var articles: List<Article> = ArrayList()) :
     override fun getItemCount() = articles.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val picture: ImageView = view.findViewById(R.id.picture)
+        private val title: TextView = view.findViewById(R.id.title)
+        private val publishedAt: TextView = view.findViewById(R.id.publishedAt)
+        private val description: TextView = view.findViewById(R.id.description)
 
         fun bind(article: Article) {
-            itemView.picture.load(article.urlToImage)
-            itemView.title.text = article.title
+            picture.load(article.urlToImage)
+            title.text = article.title
 
             val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(article.publishedAt)
-            itemView.publishedAt.text = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(date)
-            itemView.description.text = article.description
+            publishedAt.text = if (date != null) {
+                SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(date)
+            } else {
+                article.publishedAt
+            }
+            description.text = article.description
         }
     }
 }

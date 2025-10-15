@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,11 +18,19 @@ import me.jorgecastillo.hiroaki.data.datasource.MoshiNewsNetworkDataSource
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: NewsAdapter
+    private lateinit var newsList: RecyclerView
+    private lateinit var loading: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+        
+        newsList = findViewById(R.id.newsList)
+        loading = findViewById(R.id.loading)
+        
         setupList()
     }
 
