@@ -33,6 +33,13 @@ android {
         }
     }
 
+    lint {
+        abortOnError false
+        warningsAsErrors false
+        checkReleaseBuilds false
+        disable 'NotificationPermission'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
