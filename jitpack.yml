@@ -6,5 +6,5 @@ before_install:
 install:
   # Only publish library modules (hiroaki-core and hiroaki-android)
   # The :app module is a demo app and will NOT be published
-  - ./gradlew :hiroaki-core:build :hiroaki-android:build :hiroaki-core:publishToMavenLocal :hiroaki-android:publishToMavenLocal -x test
+  - ./gradlew :hiroaki-core:build :hiroaki-android:build :hiroaki-core:publishMavenPublicationToMavenLocal :hiroaki-android:publishMavenPublicationToMavenLocal -x test
 
