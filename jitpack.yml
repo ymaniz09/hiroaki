@@ -4,5 +4,7 @@ before_install:
   - sdk install java 17.0.2-open
   - sdk use java 17.0.2-open
 install:
-  - ./gradlew clean build publishToMavenLocal -x test
+  # Only publish library modules (hiroaki-core and hiroaki-android)
+  # The :app module is a demo app and will NOT be published
+  - ./gradlew :hiroaki-core:build :hiroaki-android:build :hiroaki-core:publishToMavenLocal :hiroaki-android:publishToMavenLocal -x test
 

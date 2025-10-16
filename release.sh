@@ -70,6 +70,18 @@ fi
 echo -e "${GREEN}✅ Build successful!${NC}"
 echo ""
 
+# 2.1 Verify library modules can be published (without actually publishing)
+echo -e "${BLUE}2.1. Verifying library modules...${NC}"
+echo "     - hiroaki-core (will be published)"
+echo "     - hiroaki-android (will be published)"
+echo "     - app (demo only, will NOT be published)"
+if ! ./gradlew :hiroaki-core:assemble :hiroaki-android:assemble -x test > /dev/null 2>&1; then
+    echo -e "${RED}❌ Library modules build failed!${NC}"
+    exit 1
+fi
+echo -e "${GREEN}✅ Library modules ready for publication!${NC}"
+echo ""
+
 # 3. Check git status
 echo -e "${BLUE}3. Checking git status...${NC}"
 if [[ -n $(git status -s) ]]; then
