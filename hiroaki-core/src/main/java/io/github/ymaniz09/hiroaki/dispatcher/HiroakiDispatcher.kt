@@ -56,13 +56,50 @@ object HiroakiDispatcher : Dispatcher() {
             mockRequests.remove(mockRequest)
             mockRequest.second.fold({ it }, { it(request) })
         } else {
-            notMockedResponse()
+            notMockedResponse(request)
         }
     }
 
-    private fun notMockedResponse(): MockResponse {
+    private fun notMockedResponse(request: RecordedRequest): MockResponse {
         val mockResponse = MockResponse().setResponseCode(500)
-        mockResponse.setBody("{ \"error\" : \"not mocked response\" }")
+        
+        val headers = request.headers.toMultimap().entries.joinToString(", ") { (key, values) ->
+            "$key: ${values.joinToString("; ")}"
+        }.escapeJson()
+        
+        val body = request.body.readUtf8()
+        val bodyContent = if (body.isNotEmpty()) {
+            val truncated = body.take(500)
+            val suffix = if (body.length > 500) "... (truncated)" else ""
+            (truncated + suffix).escapeJson()
+        } else {
+            ""
+        }
+        
+        val errorMessage = """
+            {
+                "error": "No mocked response found for this request",
+                "request": {
+                    "method": "${request.method.escapeJson()}",
+                    "path": "${request.path.escapeJson()}",
+                    "headers": "$headers",
+                    "body": "$bodyContent"
+                },
+                "suggestion": "Make sure you have mocked this request with server.whenever() or server.enqueue()"
+            }
+        """.trimIndent()
+        
+        mockResponse.setBody(errorMessage)
         return mockResponse
+    }
+
+    private fun String?.escapeJson(): String {
+        if (this == null) return ""
+        return this
+            .replace("\\", "\\\\")
+            .replace("\"", "\\\"")
+            .replace("\n", "\\n")
+            .replace("\r", "\\r")
+            .replace("\t", "\\t")
     }
 }
