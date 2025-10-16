@@ -1,3 +1,6 @@
+// ⚠️ This is a DEMO application module - NOT published to JitPack
+// Only hiroaki-core and hiroaki-android are published as libraries
+// This module intentionally does NOT apply 'gradle-mvn-push.gradle'
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
