@@ -2,6 +2,7 @@ Hiroaki (Modernized Fork)
 ======
 
 [![CI](https://github.com/ymaniz09/hiroaki/workflows/CI/badge.svg)](https://github.com/ymaniz09/hiroaki/actions/workflows/ci.yml)
+[![JitPack](https://jitpack.io/v/ymaniz09/hiroaki.svg)](https://jitpack.io/#ymaniz09/hiroaki)
 [![Gradle](https://img.shields.io/badge/Gradle-8.10-blue.svg)](https://gradle.org)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0.20-purple.svg)](https://kotlinlang.org)
 [![Android](https://img.shields.io/badge/Android-SDK%2035-green.svg)](https://developer.android.com)
@@ -27,18 +28,50 @@ That enables you to assert over how your program reacts to some predefined serve
 Dependency
 ----------
 
-For Android, add the following dependencies to your `build.gradle`. Both dependencies are available in **Maven Central**.
+### Via JitPack (Recommended - Latest Version)
+
+Add JitPack repository and dependencies to your `build.gradle`:
 
 ```groovy
-dependencies{
-    testImplementation 'me.jorgecastillo:hiroaki-core:0.2.3'
-    androidTestImplementation 'me.jorgecastillo:hiroaki-android:0.2.3' // Android instrumentation tests
+// In your root build.gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+// In your app/build.gradle
+dependencies {
+    // For JVM/Unit tests
+    testImplementation 'com.github.ymaniz09.hiroaki:hiroaki-core:1.0.0'
+    
+    // For Android instrumentation tests
+    androidTestImplementation 'com.github.ymaniz09.hiroaki:hiroaki-android:1.0.0'
 }
 ```
 
-Note that Hiroaki **only targets AndroidX**. It does not provide support for Android support libraries anymore.
+**Or use the short form:**
+```groovy
+dependencies {
+    testImplementation 'com.github.ymaniz09:hiroaki:1.0.0'
+}
+```
 
-If you do plain Java or Kotlin you'll just need the core artifact on its `0.2.3` version.
+### Requirements
+
+- **Min SDK**: 21 (Android 5.0)
+- **Compile SDK**: 35 (Android 15)
+- **Java**: 17+
+- **Gradle**: 8.0+
+- **Kotlin**: 1.9+
+
+### Migrating from Original Hiroaki
+
+See [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) for detailed migration instructions from `me.jorgecastillo:hiroaki:0.2.3`.
+
+Note that this fork **only targets AndroidX**. It does not provide support for Android support libraries.
 
 Setup
 -----

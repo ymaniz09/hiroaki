@@ -2,16 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    namespace 'me.jorgecastillo.hiroaki'
+    namespace 'io.github.ymaniz09.hiroaki'
     compileSdk 35
     
     defaultConfig {
-        applicationId "me.jorgecastillo.hiroaki"
+        applicationId "io.github.ymaniz09.hiroaki"
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
         versionName "0.0.1"
-        testInstrumentationRunner "me.jorgecastillo.hiroaki.CustomTestRunner"
+        testInstrumentationRunner "io.github.ymaniz09.hiroaki.CustomTestRunner"
 
         multiDexEnabled true
     }

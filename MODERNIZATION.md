@@ -60,6 +60,22 @@ Fixed Mockito 5.x compatibility issues:
 - ✅ APK artifacts generated
 - ✅ Library assembly verified
 
+## 📦 Package Name Change
+
+- **Old**: `me.jorgecastillo.hiroaki`
+- **New**: `io.github.ymaniz09.hiroaki`
+
+All package declarations, imports, and directory structures have been updated.
+
+### Maven Coordinates
+
+```gradle
+dependencies {
+    testImplementation 'io.github.ymaniz09:hiroaki-core:1.0.0'
+    androidTestImplementation 'io.github.ymaniz09:hiroaki-android:1.0.0'
+}
+```
+
 ## 📝 Original Project
 
 This is a fork of [Hiroaki](https://github.com/JorgeCastilloPrz/hiroaki) by Jorge Castillo Pérez.
