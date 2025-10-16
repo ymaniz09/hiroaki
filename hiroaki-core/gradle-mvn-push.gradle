@@ -52,4 +52,9 @@ afterEvaluate { project ->
             }
         }
     }
+    
+    // Fix task dependency issue with Gradle 8+
+    tasks.withType(GenerateModuleMetadata) {
+        dependsOn sourcesJar, javadocJar
+    }
 }
